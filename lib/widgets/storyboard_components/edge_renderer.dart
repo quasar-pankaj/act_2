@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of 'storyboard.dart';
 
 class EdgeRenderer extends CustomPainter {
   Offset offset;
