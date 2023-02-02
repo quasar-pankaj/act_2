@@ -3,23 +3,22 @@ part of 'storyboard.dart';
 class RenderWorkflowBox extends RenderBox
     with
         ContainerRenderObjectMixin<RenderBox, NodeBoxData>,
-        RenderBoxContainerDefaultsMixin<RenderBox, NodeBoxData> {
-  final List<Node> _relationships;
-  final List<Node> _characters;
-  final List<Node> _strands;
-  final List<Node> _places;
-  final List<Node> _props;
+        RenderBoxContainerDefaultsMixin<RenderBox, NodeBoxData>,
+        SlottedContainerRenderObjectMixin<positions> {
+  final List<List<Node>> _trackables;
+
   RenderWorkflowBox({
-    List<Node> relationships = const [],
-    List<Node> characters = const [],
-    List<Node> strands = const [],
-    List<Node> places = const [],
-    List<Node> props = const [],
-  })  : _characters = characters,
-        _strands = strands,
-        _places = places,
-        _props = props,
-        _relationships = relationships;
+    List<List<Node>> trackables = const [],
+  }) : _trackables = trackables;
+
+  void _populateDefaults() {
+    final List<Node> relationships = [];
+    final List<Node> characters = [];
+    final List<Node> strands = [];
+    final List<Node> places = [];
+    final List<Node> props = [];
+  }
+
   @override
   void performLayout() {
     // TODO: implement performLayout
