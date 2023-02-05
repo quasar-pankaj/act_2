@@ -1,6 +1,6 @@
 part of 'storyboard.dart';
 
-class EdgeRender extends CustomPainter {
+class EdgeRenderer extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     // TODO: implement paint

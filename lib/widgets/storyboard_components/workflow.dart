@@ -2,8 +2,15 @@ part of 'storyboard.dart';
 
 class _Storyboard extends MultiChildRenderObjectWidget {
   @override
-  RenderObject createRenderObject(BuildContext context) {
-    // TODO: implement createRenderObject
-    throw UnimplementedError();
+  RenderWorkflow createRenderObject(BuildContext context) {
+    return RenderWorkflow();
+  }
+
+  @override
+  void updateRenderObject(
+      BuildContext context, covariant RenderWorkflow renderObject) {
+    // TODO: implement updateRenderObject
+    // TODO: add some properties to RenderWorkflow and use them here.
+    super.updateRenderObject(context, renderObject);
   }
 }
