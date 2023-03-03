@@ -1,11 +1,25 @@
+import 'dart:ui';
+
 import 'package:act_2/utils/db_utils.dart';
+import 'package:act_2/widgets/kanban_board_components/models/item.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 Future<void> main() async {
   await Hive.initFlutter('projects');
+  Hive.registerAdapter<Item>(ItemAdapter());
   await Hive.openBox(Db.kanbanLists);
   runApp(const MyApp());
+  await Hive.close();
+}
+
+class MyCustomScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        // etc.
+      };
 }
 
 class MyApp extends StatelessWidget {
@@ -16,6 +30,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      scrollBehavior: MyCustomScrollBehavior(),
       theme: ThemeData(
         // This is the theme of your application.
         //
