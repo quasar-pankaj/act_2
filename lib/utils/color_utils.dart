@@ -1,0 +1,20 @@
+import 'dart:ui';
+
+extension ColorExtension on String {
+  toColor() {
+    var hexColor = replaceAll("#", "");
+    if (hexColor.length == 6) {
+      hexColor = "FF$hexColor";
+    }
+    if (hexColor.length == 8) {
+      return Color(int.parse("0x$hexColor"));
+    }
+  }
+}
+
+extension StringExtension on Color {
+  toHex() {
+    var hexCode = '#${value.toRadixString(16).substring(2, 8)}';
+    return hexCode;
+  }
+}
