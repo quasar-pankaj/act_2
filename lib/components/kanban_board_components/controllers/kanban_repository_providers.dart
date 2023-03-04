@@ -1,9 +1,9 @@
-import 'package:act_2/widgets/kanban_board_components/models/kanban_item.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../../utils/db_utils.dart';
 import '../models/kanban_board.dart';
+import '../models/kanban_item.dart';
 import '../models/kanban_list.dart';
 
 final itemProvider = Provider<Box<KanbanItem>>((ref) {
