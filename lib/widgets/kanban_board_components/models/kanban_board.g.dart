@@ -18,7 +18,7 @@ class KanbanBoardAdapter extends TypeAdapter<_$_KanbanBoard> {
     };
     return _$_KanbanBoard(
       id: fields[0] as int?,
-      lists: (fields[1] as List?)?.cast<KanbanList>(),
+      lists: (fields[1] as List?)?.cast<int>(),
     );
   }
 
@@ -50,9 +50,7 @@ class KanbanBoardAdapter extends TypeAdapter<_$_KanbanBoard> {
 _$_KanbanBoard _$$_KanbanBoardFromJson(Map<String, dynamic> json) =>
     _$_KanbanBoard(
       id: json['id'] as int?,
-      lists: (json['lists'] as List<dynamic>?)
-          ?.map((e) => KanbanList.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      lists: (json['lists'] as List<dynamic>?)?.map((e) => e as int).toList(),
     );
 
 Map<String, dynamic> _$$_KanbanBoardToJson(_$_KanbanBoard instance) =>

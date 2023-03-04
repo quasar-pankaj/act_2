@@ -23,7 +23,7 @@ mixin _$KanbanBoard {
   @HiveField(0)
   int? get id => throw _privateConstructorUsedError;
   @HiveField(1)
-  List<KanbanList>? get lists => throw _privateConstructorUsedError;
+  List<int>? get lists => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +37,7 @@ abstract class $KanbanBoardCopyWith<$Res> {
           KanbanBoard value, $Res Function(KanbanBoard) then) =
       _$KanbanBoardCopyWithImpl<$Res, KanbanBoard>;
   @useResult
-  $Res call({@HiveField(0) int? id, @HiveField(1) List<KanbanList>? lists});
+  $Res call({@HiveField(0) int? id, @HiveField(1) List<int>? lists});
 }
 
 /// @nodoc
@@ -64,7 +64,7 @@ class _$KanbanBoardCopyWithImpl<$Res, $Val extends KanbanBoard>
       lists: freezed == lists
           ? _value.lists
           : lists // ignore: cast_nullable_to_non_nullable
-              as List<KanbanList>?,
+              as List<int>?,
     ) as $Val);
   }
 }
@@ -77,7 +77,7 @@ abstract class _$$_KanbanBoardCopyWith<$Res>
       __$$_KanbanBoardCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@HiveField(0) int? id, @HiveField(1) List<KanbanList>? lists});
+  $Res call({@HiveField(0) int? id, @HiveField(1) List<int>? lists});
 }
 
 /// @nodoc
@@ -102,7 +102,7 @@ class __$$_KanbanBoardCopyWithImpl<$Res>
       lists: freezed == lists
           ? _value._lists
           : lists // ignore: cast_nullable_to_non_nullable
-              as List<KanbanList>?,
+              as List<int>?,
     ));
   }
 }
@@ -112,7 +112,7 @@ class __$$_KanbanBoardCopyWithImpl<$Res>
 @HiveType(typeId: 2, adapterName: 'KanbanBoardAdapter')
 class _$_KanbanBoard implements _KanbanBoard {
   const _$_KanbanBoard(
-      {@HiveField(0) this.id, @HiveField(1) final List<KanbanList>? lists})
+      {@HiveField(0) this.id, @HiveField(1) final List<int>? lists})
       : _lists = lists;
 
   factory _$_KanbanBoard.fromJson(Map<String, dynamic> json) =>
@@ -121,10 +121,10 @@ class _$_KanbanBoard implements _KanbanBoard {
   @override
   @HiveField(0)
   final int? id;
-  final List<KanbanList>? _lists;
+  final List<int>? _lists;
   @override
   @HiveField(1)
-  List<KanbanList>? get lists {
+  List<int>? get lists {
     final value = _lists;
     if (value == null) return null;
     if (_lists is EqualUnmodifiableListView) return _lists;
@@ -168,7 +168,7 @@ class _$_KanbanBoard implements _KanbanBoard {
 abstract class _KanbanBoard implements KanbanBoard {
   const factory _KanbanBoard(
       {@HiveField(0) final int? id,
-      @HiveField(1) final List<KanbanList>? lists}) = _$_KanbanBoard;
+      @HiveField(1) final List<int>? lists}) = _$_KanbanBoard;
 
   factory _KanbanBoard.fromJson(Map<String, dynamic> json) =
       _$_KanbanBoard.fromJson;
@@ -178,7 +178,7 @@ abstract class _KanbanBoard implements KanbanBoard {
   int? get id;
   @override
   @HiveField(1)
-  List<KanbanList>? get lists;
+  List<int>? get lists;
   @override
   @JsonKey(ignore: true)
   _$$_KanbanBoardCopyWith<_$_KanbanBoard> get copyWith =>
