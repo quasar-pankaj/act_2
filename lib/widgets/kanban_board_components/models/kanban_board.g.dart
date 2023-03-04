@@ -1,38 +1,35 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'item.dart';
+part of 'kanban_board.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class ItemAdapter extends TypeAdapter<_$_Item> {
+class KanbanBoardAdapter extends TypeAdapter<_$_KanbanBoard> {
   @override
-  final int typeId = 0;
+  final int typeId = 2;
 
   @override
-  _$_Item read(BinaryReader reader) {
+  _$_KanbanBoard read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return _$_Item(
-      id: fields[0] as int,
-      someField1: fields[1] as int,
-      someField2: fields[2] as String,
+    return _$_KanbanBoard(
+      id: fields[0] as int?,
+      lists: (fields[1] as List?)?.cast<KanbanList>(),
     );
   }
 
   @override
-  void write(BinaryWriter writer, _$_Item obj) {
+  void write(BinaryWriter writer, _$_KanbanBoard obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(2)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.someField1)
-      ..writeByte(2)
-      ..write(obj.someField2);
+      ..write(obj.lists);
   }
 
   @override
@@ -41,7 +38,7 @@ class ItemAdapter extends TypeAdapter<_$_Item> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ItemAdapter &&
+      other is KanbanBoardAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
@@ -50,14 +47,16 @@ class ItemAdapter extends TypeAdapter<_$_Item> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Item _$$_ItemFromJson(Map<String, dynamic> json) => _$_Item(
-      id: json['id'] as int,
-      someField1: json['someField1'] as int,
-      someField2: json['someField2'] as String,
+_$_KanbanBoard _$$_KanbanBoardFromJson(Map<String, dynamic> json) =>
+    _$_KanbanBoard(
+      id: json['id'] as int?,
+      lists: (json['lists'] as List<dynamic>?)
+          ?.map((e) => KanbanList.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
-Map<String, dynamic> _$$_ItemToJson(_$_Item instance) => <String, dynamic>{
+Map<String, dynamic> _$$_KanbanBoardToJson(_$_KanbanBoard instance) =>
+    <String, dynamic>{
       'id': instance.id,
-      'someField1': instance.someField1,
-      'someField2': instance.someField2,
+      'lists': instance.lists,
     };

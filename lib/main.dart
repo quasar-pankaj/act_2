@@ -1,13 +1,13 @@
 import 'dart:ui';
 
 import 'package:act_2/utils/db_utils.dart';
-import 'package:act_2/widgets/kanban_board_components/models/item.dart';
+import 'package:act_2/widgets/kanban_board_components/models/kanban_item.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 Future<void> main() async {
   await Hive.initFlutter('projects');
-  Hive.registerAdapter<Item>(ItemAdapter());
+  Hive.registerAdapter<KanbanItem>(KanbanItemAdapter());
   await Hive.openBox(Db.kanbanLists);
   runApp(const MyApp());
   await Hive.close();
