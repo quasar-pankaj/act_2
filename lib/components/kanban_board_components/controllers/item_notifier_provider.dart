@@ -7,39 +7,17 @@ import 'kanban_repository_providers.dart';
 final itemNotifierProvider =
     NotifierProvider<ItemNotifier, Box<KanbanItem>>(ItemNotifier.new);
 
-class ItemNotifier extends Notifier<Box<KanbanItem>> {
+class ItemNotifier extends KanbanNotifier<KanbanItem> {
   @override
   Box<KanbanItem> build() {
     return ref.watch(itemProvider);
   }
 
   Future<KanbanItem> save(KanbanItem item) async {
-    final box = state;
-    if (item.id == null) {
-      int id = await box.add(item);
-      final newItem = item.copyWith(id: id);
-      state = box;
-      return newItem;
-    } else {
-      box.put(item.id, item);
-      state = box;
-      return item;
-    }
-  }
-
-  Future<void> delete(KanbanItem item) async {
-    final box = state;
-    await box.delete(item.id);
-    state = box;
-  }
-
-  Iterable<KanbanItem> getAll() {
-    final box = state;
-    return box.values;
-  }
-
-  KanbanItem? getAt(int index) {
-    final box = state;
-    return box.getAt(index);
+    return saveBase(
+      item,
+      (item) => item.id,
+      (id) => item.copyWith(id: id),
+    );
   }
 }
