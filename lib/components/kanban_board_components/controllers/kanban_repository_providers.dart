@@ -18,46 +18,60 @@ final boardProvider = Provider<Box<KanbanBoard>>((ref) {
   return Hive.box<KanbanBoard>(Db.kanbanBoardBox);
 });
 
-abstract class KanbanNotifier<E> extends Notifier<Box<E>> {
-  Future<E> saveBase(
-    E item,
-    int? Function(E item) getId,
-    E Function(int id) copyWith,
-  ) async {
-    final box = state;
+abstract class KanbanNotifier<E> extends FamilyNotifier<Iterable<E>, int> {
+  Provider<Box<E>> get provider;
+  int? getId(E item);
+  E copyWith(E item, int id);
+
+  @override
+  Iterable<E> build(int arg) {
+    final box = ref.watch(provider);
+    return box.values;
+  }
+
+  Future<E> save(E item) async {
+    final box = ref.read(provider);
+
     int? id = getId(item);
     if (id == null) {
+      final items = [...state];
       id = await box.add(item);
-      final newItem = copyWith(id);
-      state = box;
+      final newItem = copyWith(item, id);
+      items.add(newItem);
+      state = items;
       return newItem;
     } else {
       box.put(id, item); // if this doesn't work delete the item first
-      state = box;
+      final items = [
+        for (E i in state)
+          if (getId(i) == getId(item)) item else i
+      ];
+      state = items;
       return item;
     }
   }
 
   Future<void> delete(KanbanItem item) async {
-    final box = state;
+    final box = ref.read(provider);
+    final items = [...state.where((element) => element != item)];
     await box.delete(item.id);
-    state = box;
+    state = items;
   }
 
   Iterable<E> getAll() {
-    final box = state;
-    return box.values;
+    return state;
   }
 
   E? getAt(int index) {
-    final box = state;
-    return box.getAt(index);
+    return state.toList()[index];
   }
 
   Future<int> deleteAll() async {
-    final box = state;
-    final length = await box.clear();
-    state = box;
+    final box = ref.read(provider);
+    final items = [...state];
+    final length = items.length;
+    box.deleteAll(items.map((e) => getId(e)));
+    state = items..clear();
     return length;
   }
 }

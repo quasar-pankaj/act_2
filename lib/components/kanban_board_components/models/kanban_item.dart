@@ -16,6 +16,7 @@ class KanbanItem with _$KanbanItem {
     @HiveField(5) String? color,
     @HiveField(6) String? borderColor,
     @HiveField(7) List<String>? tags,
+    @HiveField(8) required int listId,
   }) = _KanbanItem;
 
   factory KanbanItem.fromJson(Map<String, dynamic> json) =>

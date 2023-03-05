@@ -35,7 +35,7 @@ mixin _$KanbanList {
   @HiveField(6)
   String? get borderColor => throw _privateConstructorUsedError;
   @HiveField(7)
-  List<int>? get items => throw _privateConstructorUsedError;
+  int get boardId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -57,7 +57,7 @@ abstract class $KanbanListCopyWith<$Res> {
       @HiveField(4) String? subtitleColor,
       @HiveField(5) String? color,
       @HiveField(6) String? borderColor,
-      @HiveField(7) List<int>? items});
+      @HiveField(7) int boardId});
 }
 
 /// @nodoc
@@ -80,7 +80,7 @@ class _$KanbanListCopyWithImpl<$Res, $Val extends KanbanList>
     Object? subtitleColor = freezed,
     Object? color = freezed,
     Object? borderColor = freezed,
-    Object? items = freezed,
+    Object? boardId = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -111,10 +111,10 @@ class _$KanbanListCopyWithImpl<$Res, $Val extends KanbanList>
           ? _value.borderColor
           : borderColor // ignore: cast_nullable_to_non_nullable
               as String?,
-      items: freezed == items
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
+      boardId: null == boardId
+          ? _value.boardId
+          : boardId // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -135,7 +135,7 @@ abstract class _$$_KanbanListCopyWith<$Res>
       @HiveField(4) String? subtitleColor,
       @HiveField(5) String? color,
       @HiveField(6) String? borderColor,
-      @HiveField(7) List<int>? items});
+      @HiveField(7) int boardId});
 }
 
 /// @nodoc
@@ -156,7 +156,7 @@ class __$$_KanbanListCopyWithImpl<$Res>
     Object? subtitleColor = freezed,
     Object? color = freezed,
     Object? borderColor = freezed,
-    Object? items = freezed,
+    Object? boardId = null,
   }) {
     return _then(_$_KanbanList(
       id: freezed == id
@@ -187,10 +187,10 @@ class __$$_KanbanListCopyWithImpl<$Res>
           ? _value.borderColor
           : borderColor // ignore: cast_nullable_to_non_nullable
               as String?,
-      items: freezed == items
-          ? _value._items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
+      boardId: null == boardId
+          ? _value.boardId
+          : boardId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -207,8 +207,7 @@ class _$_KanbanList implements _KanbanList {
       @HiveField(4) this.subtitleColor,
       @HiveField(5) this.color,
       @HiveField(6) this.borderColor,
-      @HiveField(7) final List<int>? items})
-      : _items = items;
+      @HiveField(7) required this.boardId});
 
   factory _$_KanbanList.fromJson(Map<String, dynamic> json) =>
       _$$_KanbanListFromJson(json);
@@ -234,20 +233,13 @@ class _$_KanbanList implements _KanbanList {
   @override
   @HiveField(6)
   final String? borderColor;
-  final List<int>? _items;
   @override
   @HiveField(7)
-  List<int>? get items {
-    final value = _items;
-    if (value == null) return null;
-    if (_items is EqualUnmodifiableListView) return _items;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+  final int boardId;
 
   @override
   String toString() {
-    return 'KanbanList(id: $id, title: $title, subtitle: $subtitle, titleColor: $titleColor, subtitleColor: $subtitleColor, color: $color, borderColor: $borderColor, items: $items)';
+    return 'KanbanList(id: $id, title: $title, subtitle: $subtitle, titleColor: $titleColor, subtitleColor: $subtitleColor, color: $color, borderColor: $borderColor, boardId: $boardId)';
   }
 
   @override
@@ -266,21 +258,13 @@ class _$_KanbanList implements _KanbanList {
             (identical(other.color, color) || other.color == color) &&
             (identical(other.borderColor, borderColor) ||
                 other.borderColor == borderColor) &&
-            const DeepCollectionEquality().equals(other._items, _items));
+            (identical(other.boardId, boardId) || other.boardId == boardId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      title,
-      subtitle,
-      titleColor,
-      subtitleColor,
-      color,
-      borderColor,
-      const DeepCollectionEquality().hash(_items));
+  int get hashCode => Object.hash(runtimeType, id, title, subtitle, titleColor,
+      subtitleColor, color, borderColor, boardId);
 
   @JsonKey(ignore: true)
   @override
@@ -305,7 +289,7 @@ abstract class _KanbanList implements KanbanList {
       @HiveField(4) final String? subtitleColor,
       @HiveField(5) final String? color,
       @HiveField(6) final String? borderColor,
-      @HiveField(7) final List<int>? items}) = _$_KanbanList;
+      @HiveField(7) required final int boardId}) = _$_KanbanList;
 
   factory _KanbanList.fromJson(Map<String, dynamic> json) =
       _$_KanbanList.fromJson;
@@ -333,7 +317,7 @@ abstract class _KanbanList implements KanbanList {
   String? get borderColor;
   @override
   @HiveField(7)
-  List<int>? get items;
+  int get boardId;
   @override
   @JsonKey(ignore: true)
   _$$_KanbanListCopyWith<_$_KanbanList> get copyWith =>

@@ -5,19 +5,14 @@ import '../models/kanban_item.dart';
 import 'kanban_repository_providers.dart';
 
 final itemNotifierProvider =
-    NotifierProvider<ItemNotifier, Box<KanbanItem>>(ItemNotifier.new);
+    NotifierProvider.family<ItemNotifier, Iterable<KanbanItem>, int>(
+        ItemNotifier.new);
 
 class ItemNotifier extends KanbanNotifier<KanbanItem> {
   @override
-  Box<KanbanItem> build() {
-    return ref.watch(itemProvider);
-  }
-
-  Future<KanbanItem> save(KanbanItem item) async {
-    return saveBase(
-      item,
-      (item) => item.id,
-      (id) => item.copyWith(id: id),
-    );
-  }
+  Provider<Box<KanbanItem>> get provider => itemProvider;
+  @override
+  int? getId(KanbanItem item) => item.id;
+  @override
+  KanbanItem copyWith(KanbanItem item, int id) => item.copyWith(id: id);
 }

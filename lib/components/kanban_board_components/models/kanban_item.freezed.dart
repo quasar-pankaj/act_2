@@ -36,6 +36,8 @@ mixin _$KanbanItem {
   String? get borderColor => throw _privateConstructorUsedError;
   @HiveField(7)
   List<String>? get tags => throw _privateConstructorUsedError;
+  @HiveField(8)
+  int get listId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -57,7 +59,8 @@ abstract class $KanbanItemCopyWith<$Res> {
       @HiveField(4) String? subtitleColor,
       @HiveField(5) String? color,
       @HiveField(6) String? borderColor,
-      @HiveField(7) List<String>? tags});
+      @HiveField(7) List<String>? tags,
+      @HiveField(8) int listId});
 }
 
 /// @nodoc
@@ -81,6 +84,7 @@ class _$KanbanItemCopyWithImpl<$Res, $Val extends KanbanItem>
     Object? color = freezed,
     Object? borderColor = freezed,
     Object? tags = freezed,
+    Object? listId = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -115,6 +119,10 @@ class _$KanbanItemCopyWithImpl<$Res, $Val extends KanbanItem>
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      listId: null == listId
+          ? _value.listId
+          : listId // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -135,7 +143,8 @@ abstract class _$$_KanbanItemCopyWith<$Res>
       @HiveField(4) String? subtitleColor,
       @HiveField(5) String? color,
       @HiveField(6) String? borderColor,
-      @HiveField(7) List<String>? tags});
+      @HiveField(7) List<String>? tags,
+      @HiveField(8) int listId});
 }
 
 /// @nodoc
@@ -157,6 +166,7 @@ class __$$_KanbanItemCopyWithImpl<$Res>
     Object? color = freezed,
     Object? borderColor = freezed,
     Object? tags = freezed,
+    Object? listId = null,
   }) {
     return _then(_$_KanbanItem(
       id: freezed == id
@@ -191,6 +201,10 @@ class __$$_KanbanItemCopyWithImpl<$Res>
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      listId: null == listId
+          ? _value.listId
+          : listId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -207,7 +221,8 @@ class _$_KanbanItem implements _KanbanItem {
       @HiveField(4) this.subtitleColor,
       @HiveField(5) this.color,
       @HiveField(6) this.borderColor,
-      @HiveField(7) final List<String>? tags})
+      @HiveField(7) final List<String>? tags,
+      @HiveField(8) required this.listId})
       : _tags = tags;
 
   factory _$_KanbanItem.fromJson(Map<String, dynamic> json) =>
@@ -246,8 +261,12 @@ class _$_KanbanItem implements _KanbanItem {
   }
 
   @override
+  @HiveField(8)
+  final int listId;
+
+  @override
   String toString() {
-    return 'KanbanItem(id: $id, title: $title, subtitle: $subtitle, titleColor: $titleColor, subtitleColor: $subtitleColor, color: $color, borderColor: $borderColor, tags: $tags)';
+    return 'KanbanItem(id: $id, title: $title, subtitle: $subtitle, titleColor: $titleColor, subtitleColor: $subtitleColor, color: $color, borderColor: $borderColor, tags: $tags, listId: $listId)';
   }
 
   @override
@@ -266,7 +285,8 @@ class _$_KanbanItem implements _KanbanItem {
             (identical(other.color, color) || other.color == color) &&
             (identical(other.borderColor, borderColor) ||
                 other.borderColor == borderColor) &&
-            const DeepCollectionEquality().equals(other._tags, _tags));
+            const DeepCollectionEquality().equals(other._tags, _tags) &&
+            (identical(other.listId, listId) || other.listId == listId));
   }
 
   @JsonKey(ignore: true)
@@ -280,7 +300,8 @@ class _$_KanbanItem implements _KanbanItem {
       subtitleColor,
       color,
       borderColor,
-      const DeepCollectionEquality().hash(_tags));
+      const DeepCollectionEquality().hash(_tags),
+      listId);
 
   @JsonKey(ignore: true)
   @override
@@ -305,7 +326,8 @@ abstract class _KanbanItem implements KanbanItem {
       @HiveField(4) final String? subtitleColor,
       @HiveField(5) final String? color,
       @HiveField(6) final String? borderColor,
-      @HiveField(7) final List<String>? tags}) = _$_KanbanItem;
+      @HiveField(7) final List<String>? tags,
+      @HiveField(8) required final int listId}) = _$_KanbanItem;
 
   factory _KanbanItem.fromJson(Map<String, dynamic> json) =
       _$_KanbanItem.fromJson;
@@ -334,6 +356,9 @@ abstract class _KanbanItem implements KanbanItem {
   @override
   @HiveField(7)
   List<String>? get tags;
+  @override
+  @HiveField(8)
+  int get listId;
   @override
   @JsonKey(ignore: true)
   _$$_KanbanItemCopyWith<_$_KanbanItem> get copyWith =>

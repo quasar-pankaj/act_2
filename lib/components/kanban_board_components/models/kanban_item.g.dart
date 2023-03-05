@@ -25,13 +25,14 @@ class KanbanItemAdapter extends TypeAdapter<_$_KanbanItem> {
       color: fields[5] as String?,
       borderColor: fields[6] as String?,
       tags: (fields[7] as List?)?.cast<String>(),
+      listId: fields[8] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$_KanbanItem obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -46,6 +47,8 @@ class KanbanItemAdapter extends TypeAdapter<_$_KanbanItem> {
       ..write(obj.color)
       ..writeByte(6)
       ..write(obj.borderColor)
+      ..writeByte(8)
+      ..write(obj.listId)
       ..writeByte(7)
       ..write(obj.tags);
   }
@@ -75,6 +78,7 @@ _$_KanbanItem _$$_KanbanItemFromJson(Map<String, dynamic> json) =>
       color: json['color'] as String?,
       borderColor: json['borderColor'] as String?,
       tags: (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      listId: json['listId'] as int,
     );
 
 Map<String, dynamic> _$$_KanbanItemToJson(_$_KanbanItem instance) =>
@@ -87,4 +91,5 @@ Map<String, dynamic> _$$_KanbanItemToJson(_$_KanbanItem instance) =>
       'color': instance.color,
       'borderColor': instance.borderColor,
       'tags': instance.tags,
+      'listId': instance.listId,
     };

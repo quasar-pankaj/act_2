@@ -24,7 +24,7 @@ class KanbanListAdapter extends TypeAdapter<_$_KanbanList> {
       subtitleColor: fields[4] as String?,
       color: fields[5] as String?,
       borderColor: fields[6] as String?,
-      items: (fields[7] as List?)?.cast<int>(),
+      boardId: fields[7] as int,
     );
   }
 
@@ -47,7 +47,7 @@ class KanbanListAdapter extends TypeAdapter<_$_KanbanList> {
       ..writeByte(6)
       ..write(obj.borderColor)
       ..writeByte(7)
-      ..write(obj.items);
+      ..write(obj.boardId);
   }
 
   @override
@@ -74,7 +74,7 @@ _$_KanbanList _$$_KanbanListFromJson(Map<String, dynamic> json) =>
       subtitleColor: json['subtitleColor'] as String?,
       color: json['color'] as String?,
       borderColor: json['borderColor'] as String?,
-      items: (json['items'] as List<dynamic>?)?.map((e) => e as int).toList(),
+      boardId: json['boardId'] as int,
     );
 
 Map<String, dynamic> _$$_KanbanListToJson(_$_KanbanList instance) =>
@@ -86,5 +86,5 @@ Map<String, dynamic> _$$_KanbanListToJson(_$_KanbanList instance) =>
       'subtitleColor': instance.subtitleColor,
       'color': instance.color,
       'borderColor': instance.borderColor,
-      'items': instance.items,
+      'boardId': instance.boardId,
     };

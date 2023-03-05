@@ -5,19 +5,14 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'kanban_repository_providers.dart';
 
 final boardNotifierProvider =
-    NotifierProvider<BoardNotifier, Box<KanbanBoard>>(BoardNotifier.new);
+    NotifierProvider.family<BoardNotifier, Iterable<KanbanBoard>, int>(
+        BoardNotifier.new);
 
 class BoardNotifier extends KanbanNotifier<KanbanBoard> {
   @override
-  Box<KanbanBoard> build() {
-    return ref.watch(boardProvider);
-  }
-
-  Future<KanbanBoard> save(KanbanBoard item) async {
-    return saveBase(
-      item,
-      (item) => item.id,
-      (id) => item.copyWith(id: id),
-    );
-  }
+  Provider<Box<KanbanBoard>> get provider => boardProvider;
+  @override
+  int? getId(KanbanBoard item) => item.id;
+  @override
+  KanbanBoard copyWith(KanbanBoard item, int id) => item.copyWith(id: id);
 }
