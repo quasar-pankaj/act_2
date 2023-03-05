@@ -4,9 +4,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import 'kanban_repository_providers.dart';
 
-final boardNotifierProvider =
-    NotifierProvider.family<BoardNotifier, Iterable<KanbanBoard>, int>(
-        BoardNotifier.new);
+final boardNotifierProvider = NotifierProvider.family
+    .autoDispose<BoardNotifier, Iterable<KanbanBoard>, int>(BoardNotifier.new);
 
 class BoardNotifier extends KanbanNotifier<KanbanBoard> {
   @override

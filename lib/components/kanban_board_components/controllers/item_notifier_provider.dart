@@ -4,9 +4,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '../models/kanban_item.dart';
 import 'kanban_repository_providers.dart';
 
-final itemNotifierProvider =
-    NotifierProvider.family<ItemNotifier, Iterable<KanbanItem>, int>(
-        ItemNotifier.new);
+final itemNotifierProvider = NotifierProvider.family
+    .autoDispose<ItemNotifier, Iterable<KanbanItem>, int>(ItemNotifier.new);
 
 class ItemNotifier extends KanbanNotifier<KanbanItem> {
   @override

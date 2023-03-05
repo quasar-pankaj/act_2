@@ -19,7 +19,7 @@ final boardProvider = Provider<Box<KanbanBoard>>((ref) {
   return Hive.box<KanbanBoard>(Db.kanbanBoardBox);
 });
 
-abstract class KanbanNotifier<E> extends FamilyNotifier<Iterable<E>, int> {
+abstract class KanbanNotifier<E> extends AutoDisposeFamilyNotifier<Iterable<E>, int> {
   @protected
   Provider<Box<E>> get provider;
   @protected
