@@ -15,4 +15,6 @@ class ListNotifier extends KanbanNotifier<KanbanList> {
   int? getId(KanbanList item) => item.id;
   @override
   KanbanList copyWith(KanbanList item, int id) => item.copyWith(id: id);
+  @override
+  int getParentId(KanbanList item) => item.boardId;
 }

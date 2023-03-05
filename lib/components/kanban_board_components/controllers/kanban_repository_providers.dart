@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -19,14 +20,19 @@ final boardProvider = Provider<Box<KanbanBoard>>((ref) {
 });
 
 abstract class KanbanNotifier<E> extends FamilyNotifier<Iterable<E>, int> {
+  @protected
   Provider<Box<E>> get provider;
+  @protected
   int? getId(E item);
+  @protected
   E copyWith(E item, int id);
+  @protected
+  int getParentId(E item);
 
   @override
   Iterable<E> build(int arg) {
     final box = ref.watch(provider);
-    return box.values;
+    return box.values.where((element) => getParentId(element) == arg);
   }
 
   Future<E> save(E item) async {

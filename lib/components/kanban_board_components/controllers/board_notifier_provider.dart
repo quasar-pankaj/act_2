@@ -15,4 +15,6 @@ class BoardNotifier extends KanbanNotifier<KanbanBoard> {
   int? getId(KanbanBoard item) => item.id;
   @override
   KanbanBoard copyWith(KanbanBoard item, int id) => item.copyWith(id: id);
+  @override
+  int getParentId(KanbanBoard item) => getId(item)!;
 }
